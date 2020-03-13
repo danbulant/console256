@@ -32,7 +32,11 @@ var counter = 0;
 setInterval(() => {
     for(var row = 0; row < HEIGHT; row++){
         for(var column = 0; column < WIDTH; column++){
-            const val = arrAvg([(row / HEIGHT) * MAX_COLORS - counter, (column / WIDTH) * MAX_COLORS - counter]) + counter;
+            var val = arrAvg([(row / HEIGHT) * MAX_COLORS, (column / WIDTH) * MAX_COLORS]);
+            val += counter;
+            
+            if(val > MAX_COLORS)val -= MAX_COLORS;
+
             view[row][column] = {0: val, 1: " "};
         }
     }
@@ -41,4 +45,4 @@ setInterval(() => {
     counter++;
 
     if(counter > MAX_COLORS) counter = 0;
-}, 300);
+}, 100);
